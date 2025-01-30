@@ -41,10 +41,22 @@ exports.deleteProduct = async (req, res) => {
 }
 
 
-exports.updateProduct = async (req, res) => {
-    let id = req.params.id
-    let newData = req.body
 
-    await productModel.findByIdAndUpdate(id, newData, { new: true })
-    res.send("data updated")
-}
+exports.updateProduct = async (req, res) => {
+    try {
+        let id = req.params.id;
+        
+        let updateData = {
+            catagory: req.body.catagory,
+            productBrand: req.body.productBrand,
+            image: req.file.filename
+        };
+        
+        await productModel.findByIdAndUpdate(id, updateData, { new: true });
+        
+        res.status(200).json({ message: "Product updated successfully" });
+    } catch (error) {
+        res.status(500).json({ error: "Failed to update product", details: error.message });
+    }
+};
+

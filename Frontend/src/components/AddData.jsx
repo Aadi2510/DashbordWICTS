@@ -112,6 +112,7 @@ export default function AddUser() {
                   </div>
 
                 </div>
+                
                 <div>
                   <button
                     type="submit"
@@ -140,5 +141,6 @@ export default function AddUser() {
         </div>
       </div>
     </section>
+
   )
 }
